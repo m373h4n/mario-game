@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mario Oyunu</title>
+  <style>
+    /* Sayfa arkaplan ve genel stiller */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+
+    /* Oyun canvas'i */
+    #gameCanvas {
+      display: block;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      border: 2px solid #333;
+    }
+
+    /* Yuklenme ekrani */
+    #loadingScreen {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 24px;
+      z-index: 100;
+    }
+
+    #loadingScreen h1 {
+      font-size: 48px;
+      color: #e52521;
+      text-shadow: 3px 3px 0 #7b1a18;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+    }
+
+    /* Mobil kontrol dugmeleri */
+    #mobileControls {
+      display: none;
+      margin-top: 10px;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 512px;
+      padding: 0 10px;
+    }
+
+    .ctrl-btn {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 20px;
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .ctrl-btn:active {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .ctrl-left-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .ctrl-right-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Mobil cihazlarda kontrolleri goster */
+    @media (max-width: 600px), (pointer: coarse) {
+      #mobileControls {
+        display: flex;
+      }
+      #gameCanvas {
+        max-width: 100vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Yuklenme ekrani -->
+  <div id="loadingScreen">
+    <h1>MARIO</h1>
+    <p>Yukluyor...</p>
+  </div>
+
+  <!-- Ana oyun canvas'i -->
+  <canvas id="gameCanvas" width="512" height="448"></canvas>
+
+  <!-- Mobil dokunma kontrolleri -->
+  <div id="mobileControls">
+    <div class="ctrl-left-group">
+      <button class="ctrl-btn" id="btnLeft">◀</button>
+      <button class="ctrl-btn" id="btnRight">▶</button>
+    </div>
+    <div class="ctrl-right-group">
+      <button class="ctrl-btn" id="btnRun">B</button>
+      <button class="ctrl-btn" id="btnJump">A</button>
+    </div>
+  </div>
+
+  <!-- Oyun modulleri - sira onemli! -->
+  <script type="module" src="src/main.js"></script>
+
+</body>
+</html>
