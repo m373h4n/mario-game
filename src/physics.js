@@ -87,15 +87,15 @@ export function tileCarpismaCozu(entity, tileMap) {
   for (const tile of dikeyTileler) {
     if (!tile.kati) continue;
     const yon = carpismaTarafi(yaklasikY, tile);
-    if (yon === 'alt') {
-      // Asagidan carpisma - zemin
+    if (yon === 'ust') {
+      // Usttten carpisma - zemin (entity merkezi tile'in ustunde = yukaridan geliyor)
       entity.y = tile.y - entity.yukseklik;
       entity.hizY = 0;
       entity.yerde = true;
       sonuc.yerde = true;
       sonuc.carpistigi = tile;
-    } else if (yon === 'ust') {
-      // Yukaridan carpisma - tavan / blok
+    } else if (yon === 'alt') {
+      // Alttan carpisma - tavan / blok (entity merkezi tile'in altinda = asagidan geliyor)
       entity.y = tile.y + tile.yukseklik;
       entity.hizY = 0;
       sonuc.tavana = true;

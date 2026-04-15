@@ -122,12 +122,12 @@ export class Level {
 
         if (entity instanceof Goomba) {
           if (!entity.ezildi) {
-            if (yon === 'alt' && mario.hizY > 0) {
-              // Ustune basinca ez
+            if (yon === 'ust' && mario.hizY > 0) {
+              // Ustune basinca ez (Mario merkezi dusmandan yukarda = ust)
               entity.ez(this.ses);
               mario.dusmanBasti(this.ses);
               mario.skor += entity.puan;
-            } else if (yon !== 'alt') {
+            } else if (yon !== 'ust') {
               // Yandan veya alttan carpisma = hasar
               mario.dusmanaDegdi(this.ses);
             }
@@ -137,7 +137,7 @@ export class Level {
             // Kayan kabuk: Mario'ya hasar verir
             mario.dusmanaDegdi(this.ses);
           } else if (entity.kabukMu()) {
-            if (yon === 'alt' && mario.hizY > 0) {
+            if (yon === 'ust' && mario.hizY > 0) {
               // Kabuga giren Koopa'nin ustune bas = kabugu kaydir
               const yonSag = mario.x < entity.x;
               entity.kabugaYan(this.ses, yonSag);
@@ -150,11 +150,11 @@ export class Level {
             }
           } else {
             // Normal Koopa
-            if (yon === 'alt' && mario.hizY > 0) {
+            if (yon === 'ust' && mario.hizY > 0) {
               entity.kabugaGir(this.ses);
               mario.dusmanBasti(this.ses);
               mario.skor += entity.puan;
-            } else if (yon !== 'alt') {
+            } else if (yon !== 'ust') {
               mario.dusmanaDegdi(this.ses);
             }
           }
